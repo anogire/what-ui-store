@@ -11,3 +11,6 @@ controller.getAllProducts();
 
 const pagination = new Pagination(constant.ITEMS_PER_PAGE);
 EventBus.subscribe('load', pagination.init.bind(pagination));
+
+const sortDirection = document.querySelector('#sortByPrice');
+sortDirection.addEventListener('change', () => controller.sortByPrice(sortDirection.value));

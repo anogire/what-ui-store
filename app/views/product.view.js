@@ -1,3 +1,5 @@
+import { EventBus } from '../pub-sub.js';
+
 export default class View {
 
   constructor() {
@@ -9,6 +11,7 @@ export default class View {
   }
 
   renderProducts({ products }) {
+    this.selectorProducts.innerHTML = '';
     if (!products) {
       console.log("No data");
       return;
@@ -20,7 +23,8 @@ export default class View {
             <img class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${product.name}</h5>
-              <p class="card-text">${product.phone}</p>
+              <p class="card-text">${product.category}</p>
+              <p class="card-text">${product.price}</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>`;
       //prev.addEventListener('click', e => this.changePage(this.curPage - 1));

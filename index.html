@@ -58,35 +58,33 @@
         </div> -->
 
         <h5 class="items-caption">Subcategories</h5>
-        <div class="dropdown">
-          <button class="dropdown-toggle category-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
+        <div id="subCategories" class="dropdown">
+          <!-- <button class="dropdown-toggle category-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" aria-label="click to see our additional options">
             Choose
           </button>
           <ul class="dropdown-menu category-nav">
             <li class="mb-3">
-              <button type="button" class="dropdown-item category-nav__item"
-                aria-label="go to Dresses category">Dresses</button>
+              <button type="button" value="Berkshire" class="dropdown-item category-nav__item"
+                aria-label="go to Berkshire category">Berkshire</button>
             </li>
             <li class="mb-3">
-              <button type="button" class="dropdown-item category-nav__item"
-                aria-label="go to Tops, Tees & Blouses category">Tops, Tees &
-                Blouses</button>
+              <button type="button" value="Avon" class="dropdown-item category-nav__item"
+                aria-label="go to Avon category">Avon</button>
             </li>
             <li class="mb-3">
-              <button type="button" class="dropdown-item category-nav__item"
-                aria-label="go to Dresses category">Sweaters</button>
+              <button type="button" value="Bedfordshire" class="dropdown-item category-nav__item"
+                aria-label="go to Bedfordshire category">Bedfordshire</button>
             </li>
             <li class="mb-3">
-              <button type="button" class="dropdown-item category-nav__item"
-                aria-label="go to Fashion Hoodies & Sweatshirts category">Fashion Hoodies &
-                Sweatshirts</button>
+              <button type="button" value="Cambridgeshire" class="dropdown-item category-nav__item"
+                aria-label="go to Cambridgeshire category">Cambridgeshire</button>
             </li>
             <li class="mb-3">
               <button type="button" class="dropdown-item category-nav__item"
                 aria-label="go to Jeans category">Jeans</button>
             </li>
-          </ul>
+          </ul> -->
         </div>
 
 
@@ -95,10 +93,10 @@
       <div class="col-sm-8 mb-4">
         <section class="mb-4 d-flex justify-content-center justify-content-md-end">
 
-          <select id="sortPrice" class="select-main" aria-label="Sort by price">
+          <select id="sortByPrice" class="select-main" aria-label="Sort by price">
             <option value="" disabled selected>Best rating</option>
-            <option value="1">Lowest price first</option>
-            <option value="2">Highest price first</option>
+            <option value="up">Lowest price first</option>
+            <option value="down">Highest price first</option>
           </select>
 
 
@@ -114,7 +112,7 @@
         </section>
 
         <section class="d-flex justify-content-center justify-content-md-end">
-          <nav class="col-md-4 nav-pag">
+          <nav class="nav-pag">
           </nav>
         </section>
       </div>

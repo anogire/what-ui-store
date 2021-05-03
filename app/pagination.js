@@ -1,3 +1,5 @@
+import { EventBus } from './pub-sub.js';
+
 export default class Pagination {
   constructor(itemsPerPage) {
     this.collectionLength = 0;
@@ -58,6 +60,9 @@ export default class Pagination {
     this.curPage = nextInd;
     this.checkPrevArrow();
     this.checkNextArrow();
+    EventBus.publish('changePage', {
+      curPage: this.curPage,
+    });
   }
 
   // внешний вид новой кнопки пагинации
