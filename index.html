@@ -29,71 +29,27 @@
 
 
   <main class="container">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-1">
       <aside class="col-sm-4 mb-4 aside-category">
-        <!-- <h5 class="items-caption">Subcategories</h5>
-
-        <div class="mb-5">
-          <ul>
-            <li class="mb-3">
-              <button type="button" class="btn-category" aria-label="go to Dresses category">Dresses</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" class="btn-category" aria-label="go to Tops, Tees & Blouses category">Tops, Tees &
-                Blouses</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" class="btn-category" aria-label="go to Dresses category">Sweaters</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" class="btn-category"
-                aria-label="go to Fashion Hoodies & Sweatshirts category">Fashion Hoodies &
-                Sweatshirts</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" class="btn-category" aria-label="go to Jeans category">Jeans</button>
-            </li>
-          </ul>
-
-        </div> -->
 
         <h5 class="items-caption">Subcategories</h5>
-        <div id="subCategories" class="dropdown">
-          <!-- <button class="dropdown-toggle category-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false" aria-label="click to see our additional options">
-            Choose
-          </button>
-          <ul class="dropdown-menu category-nav">
-            <li class="mb-3">
-              <button type="button" value="Berkshire" class="dropdown-item category-nav__item"
-                aria-label="go to Berkshire category">Berkshire</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" value="Avon" class="dropdown-item category-nav__item"
-                aria-label="go to Avon category">Avon</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" value="Bedfordshire" class="dropdown-item category-nav__item"
-                aria-label="go to Bedfordshire category">Bedfordshire</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" value="Cambridgeshire" class="dropdown-item category-nav__item"
-                aria-label="go to Cambridgeshire category">Cambridgeshire</button>
-            </li>
-            <li class="mb-3">
-              <button type="button" class="dropdown-item category-nav__item"
-                aria-label="go to Jeans category">Jeans</button>
-            </li>
-          </ul> -->
-        </div>
+        <!-- <div id="subCategories" class="dropdown sub-categories"> -->
+        <div id="subCategories">
 
+        </div>
 
 
       </aside>
       <div class="col-sm-8 mb-4">
-        <section class="mb-4 d-flex justify-content-center justify-content-md-end">
+        <section class="mb-4 section-info">
+          <form id="searchProduct" class="search-block">
+            <input class="search-block__text" type="search" name="search" placeholder="search..." maxlength="10"
+              aria-label="search product name">
+            <button class="icon search search-block__btn" type="submit" aria-label="click to search by product name">
+            </button>
+          </form>
 
-          <select id="sortByPrice" class="select-main" aria-label="Sort by price">
+          <select id="sortByPrice" class="sort-block" aria-label="Sort by price">
             <option value="" disabled selected>Best rating</option>
             <option value="up">Lowest price first</option>
             <option value="down">Highest price first</option>
@@ -104,7 +60,30 @@
         </section>
 
         <section class="mb-4">
+          <!-- Modal -->
+          <div class="modal fade" id="modalDetails" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+          </div>
+          <!-- Modal -->
           <div id="productsList" class="d-flex flex-wrap justify-content-center justify-content-md-between">
+
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
 
 
 
@@ -204,7 +183,7 @@
 
   <footer class="footer">
     <div class="secondary-font">© 2021 Copyright:
-      <a href="#" class="link-light" aria-label="Link to the Shop-store"> Shop.com</a>
+      <a href="./index.html" class="link-light" aria-label="Link to the Shop-store"> Shop.com</a>
     </div>
   </footer>
 

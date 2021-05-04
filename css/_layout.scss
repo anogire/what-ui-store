@@ -10,15 +10,72 @@ body {
   &:focus {
     outline: none;
     text-decoration: underline;
-    color: #fff;
+    color: $color-link;
+  }
+}
+
+.section-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
   }
 }
 
 
-
-
 // элементы форм
-.select-main {
+.search-block {
+  display: flex;
+  align-items: center;
+  margin: 0 2px 5px 5px;
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin: 0 5px 5px 0;
+  }
+}
+.search-block__text {
+  width: 180px;
+  height: 35px;
+  font-size: 14px;
+  border: 1px solid $color-dark;
+  border-radius: 4px 0 0 4px;
+  color: #000;
+  background-color: #fff;
+  padding: 5px 10px;
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    border-color: $color-link;
+  }
+}
+.search-block__btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid $color-link;
+  font-size: 20px;
+  padding: 5px;
+  color: #fff;
+  background-color: $color-link;
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: $color-light;
+    color: #000;
+    border-color: $color-dark;
+  }
+  &:active {
+    outline: none;
+    background-color: $color-link;
+    color: #fff;
+    border-color: $color-link;
+  }
+}
+.sort-block {
   border: 1px solid $color-dark;
   border-radius: 4px;
   cursor: pointer;
@@ -28,10 +85,36 @@ body {
   width: 180px;
   height: 35px;
   padding: 5px 10px;
+  margin: 0 5px 5px 2px;
   &:hover,
   &:focus,
   &:active {
     outline: none;
+    border-color: $color-link;
+  }
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin: 0 0 5px 5px;
+  }
+}
+.main-btn {
+  padding: 4px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #fff;
+  background-color: $color-link;
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: $color-light;
+    color: #000;
+    border-color: $color-dark;
+  }
+  &:active {
+    outline: none;
+    background-color: $color-link;
+    color: #fff;
     border-color: $color-link;
   }
 }
