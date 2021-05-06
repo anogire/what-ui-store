@@ -4,7 +4,11 @@ export default class ModelPagination {
     this.itemsPerPage = itemsPerPage;
   }
 
-  changeCollectionLength = (quantity) => this.collectionLength = quantity;
+  changeCollectionLength(quantity) {
+    this.collectionLength = quantity;
+  }
 
-  pageCount = () => Math.ceil(this.collectionLength / this.itemsPerPage);
+  pageCount() {
+    return Math.ceil(this.collectionLength / this.itemsPerPage);
+  }
 }

@@ -1,15 +1,15 @@
 export default class ViewProductDetails {
 
   constructor() {
-    this.selectorProducts = document.querySelector('#modalDetails');
+    this.selectorProduct = document.querySelector('#modalDetails');
   }
 
   showDetails({ name, price, category }) {
-    this.selectorProducts.innerHTML = `
+    this.selectorProduct.innerHTML = `
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">${name}</h5>
+          <h5 class="modal-title" id="modalLabelDetails">${name}</h5>
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

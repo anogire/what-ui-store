@@ -15,8 +15,8 @@ export default class ControllerPagination {
 
   init(params) {
     this.model.changeCollectionLength(params.quantity);
-    this.view.curPage = params.curPage;
     const pages = this.model.pageCount();
+    this.view.curPage = params.curPage;
     this.view.init(pages);
   }
 

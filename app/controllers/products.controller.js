@@ -20,7 +20,7 @@ export default class ControllerProducts {
     EventBus.subscribe('changeData', this.reRenderProducts.bind(this));
   }
 
-  getAllProducts = () => {
+  getAllProducts() {
     this.model.load()
       .then(data => {
         if (!data || data == "Not found") {
@@ -29,7 +29,6 @@ export default class ControllerProducts {
           this.collection = data;
           this.filteredCollection = data;
           EventBus.publish('load', {
-            //products: data,
             quantity: data.length,
             curPage: 1
           });
@@ -40,7 +39,8 @@ export default class ControllerProducts {
   startRenderProducts() {
     const products = this.collection.slice(0, ITEMS_PER_PAGE);
     this.viewProducts.renderProducts(products,
-      this.viewProductDetails.showDetails.bind(this.viewProductDetails));
+      this.viewProductDetails.showDetails.bind(this.viewProductDetails),
+      this.addToCart);
 
     const categories = new Set(this.collection.map((item) => item.category));
     this.viewCategories.renderCategories(categories, this.filterByCategory.bind(this));
@@ -51,7 +51,13 @@ export default class ControllerProducts {
     const startInd = ITEMS_PER_PAGE * (params.curPage - 1);
     const products = this.filteredCollection.slice(startInd, startInd + ITEMS_PER_PAGE);
     this.viewProducts.renderProducts(products,
-      this.viewProductDetails.showDetails.bind(this.viewProductDetails));
+      this.viewProductDetails.showDetails.bind(this.viewProductDetails),
+      this.addToCart);
+  }
+
+  addToCart(e, product) {
+    e.stopPropagation();
+    EventBus.publish('addToCart', product);
   }
 
   sortByPrice(direction) {
@@ -99,12 +105,6 @@ export default class ControllerProducts {
       quantity: this.filteredCollection.length,
       curPage: 1
     });
-    // EventBus.publish('changeData', {
-    //   quantity: this.filteredCollection.length
-    // });
-    // EventBus.publish('filterData', {
-    //   curPage: 1
-    // });
   }
 
 }

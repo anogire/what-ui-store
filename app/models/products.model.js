@@ -1,5 +1,7 @@
 export default class ModelProducts {
-  url = 'https://6013f25bb5389800175688b1.mockapi.io/contacts';
+  constructor() {
+    this.url = 'https://6013f25bb5389800175688b1.mockapi.io/contacts';
+  }
 
   async load() {
     try {

@@ -1,23 +1,26 @@
 import ControllerProducts from './products.controller.js';
-import ControllerPagination from '../controllers/pagination.controller.js';
+import ControllerPagination from './pagination.controller.js';
+import ControllerCart from './cart.controller.js';
 
 
 export default class MainController {
-  constructor(sortDirection, searchProduct) {
+
+  constructor(sortDirection, searchProduct, cart) {
     this.controllerProduct = new ControllerProducts();
     this.controllerPagination = new ControllerPagination();
+    this.controllerCart = new ControllerCart(cart);
 
-    this.sortDirection = sortDirection;
-    this.searchProduct = searchProduct;
+    sortDirection.addEventListener('change',
+      () => this.controllerProduct.sortByPrice(sortDirection.value));
 
-    this.sortDirection.addEventListener('change',
-      () => this.controllerProduct.sortByPrice(this.sortDirection.value));
-
-    this.searchProduct.addEventListener('submit',
+    searchProduct.addEventListener('submit',
       e => this.controllerProduct.searchByProductName(e));
+
+    // cart.addEventListener('click',
+    //   () => this.controllerCart.getInnerCart());
   }
 
-  init = () => {
+  init() {
     this.controllerProduct.getAllProducts();
   }
 
