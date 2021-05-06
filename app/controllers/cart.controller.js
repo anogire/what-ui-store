@@ -8,17 +8,32 @@ export default class ControllerCart {
   constructor(selector) {
     this.cart = new ModelCart();
     this.view = new ViewCart();
+    this.selector = selector;
 
-    selector.addEventListener('click', this.renderCart.bind(this));
+    this.selector.addEventListener('click', this.renderCart.bind(this));
 
-    EventBus.subscribe('addToCart', this.cart.addToCart.bind(this.cart));
+    //EventBus.subscribe('addToCart', this.cart.addToCart.bind(this.cart));
+    EventBus.subscribe('addToCart', this.addToCart.bind(this));
     EventBus.subscribe('incProductInCart', this.incProductInCart.bind(this));
     EventBus.subscribe('decProductInCart', this.decProductInCart.bind(this));
     EventBus.subscribe('removeFromCart', this.removeFromCart.bind(this));
+    EventBus.subscribe('cartEmpty', this.cartEmpty.bind(this));
+  }
+
+  cartEmpty() {
+    this.selector.setAttribute('disabled', 'true');
+    this.selector.classList.remove("customer-cart--active");
+    $('#modalCart').modal('hide');
   }
 
   renderCart() {
     this.view.showCart(this.cart.inner, this.cart.totalSum);
+  }
+
+  addToCart(product) {
+    this.selector.removeAttribute('disabled');
+    this.selector.classList.add("customer-cart--active");
+    this.cart.addToCart(product);
   }
 
   incProductInCart(params) {

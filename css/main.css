@@ -11139,6 +11139,15 @@ body {
   color: #4f4f4f;
 }
 
+.pagination-arr-disabled {
+  padding: 0 10px;
+  height: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  color: #4f4f4f;
+  background-color: transparent;
+}
+
 .pagination-page {
   border-radius: 50%;
   width: 35px;
@@ -11157,7 +11166,13 @@ body {
   background-color: #ebebeb;
 }
 
-.pagination-page--active {
+.pagination-page-active {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0 2px;
   color: #fff;
   background-color: #ffa600;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
@@ -11344,12 +11359,12 @@ body {
   background-color: transparent;
 }
 
-.customer-cart:hover, .customer-cart:focus {
+.customer-cart--active:hover, .customer-cart--active:focus {
   outline: none;
   color: #ffa600;
 }
 
-.customer-cart:active {
+.customer-cart--active:active {
   outline: none;
   color: #fff;
 }
@@ -11374,12 +11389,12 @@ body {
   color: #000;
 }
 
-.navb-scroll .customer-cart:hover, .navb-scroll .customer-cart:focus {
+.navb-scroll .customer-cart--active:hover, .navb-scroll .customer-cart--active:focus {
   outline: none;
   color: #ffa600;
 }
 
-.navb-scroll .customer-cart:active {
+.navb-scroll .customer-cart--active:active {
   outline: none;
   color: #000;
 }

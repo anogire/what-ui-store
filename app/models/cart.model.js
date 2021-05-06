@@ -1,3 +1,5 @@
+import { EventBus } from '../pub-sub.js';
+
 export default class ModelCart {
 
   constructor() {
@@ -31,7 +33,8 @@ export default class ModelCart {
     const curProduct = this.inner.find(item => item.id === product.id);
     curProduct.quantity++;
     curProduct.total = this.getTotal(curProduct);
-    this.totalSum += +curProduct.price;
+    //this.totalSum += +curProduct.price;
+    this.getTotalSum();
   }
 
   minus(product) {
@@ -39,12 +42,14 @@ export default class ModelCart {
     const curProduct = this.inner.find(item => item.id === product.id);
     curProduct.quantity--;
     curProduct.total = this.getTotal(curProduct);
-    this.totalSum -= +curProduct.price;
+    //this.totalSum -= +curProduct.price;
+    this.getTotalSum();
   }
 
   remove(product) {
     this.inner = this.inner.filter(item => item.id !== product.id);
-    this.totalSum -= +product.total;
+    //this.totalSum -= +product.total;
+    this.getTotalSum();
   }
 
   getTotal(product) {
@@ -53,5 +58,8 @@ export default class ModelCart {
 
   getTotalSum() {
     this.totalSum = this.inner.reduce((sum, cur) => sum += +cur.total, 0);
+    if (!this.totalSum) {
+      EventBus.publish('cartEmpty', {});
+    }
   }
 }

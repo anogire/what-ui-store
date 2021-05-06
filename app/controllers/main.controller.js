@@ -15,13 +15,12 @@ export default class MainController {
 
     searchProduct.addEventListener('submit',
       e => this.controllerProduct.searchByProductName(e));
-
-    // cart.addEventListener('click',
-    //   () => this.controllerCart.getInnerCart());
   }
 
   init() {
     this.controllerProduct.getAllProducts();
   }
+
+
 
 }

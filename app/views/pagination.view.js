@@ -19,14 +19,14 @@ export default class ViewPagination {
     list.setAttribute('class', 'pagination justify-content-center');
 
     const prev = document.createElement('li');
-    prev.innerHTML = '<button id="pagPrev" type="button" class="pagination-arr icon arr-left" disabled aria-label="Previous"></button>';
+    prev.innerHTML = '<button id="pagPrev" type="button" class="pagination-arr-disabled icon arr-left" disabled aria-label="Previous"></button>';
     prev.addEventListener('click', e => this.changePage(this.curPage - 1));
     list.append(prev);
 
     for (let i = 1; i <= pages; i++) {
       const el = document.createElement('li');
       if (this.curPage == i) {
-        el.innerHTML = `<button type="button" id="pag${i}" class="pagination-page pagination-page--active" disabled aria-label="${i} page">${i}</button>`;
+        el.innerHTML = `<button type="button" id="pag${i}" class="pagination-page-active" disabled aria-label="${i} page">${i}</button>`;
       } else {
         el.innerHTML = `<button type="button" id="pag${i}" class="pagination-page" aria-label="go to ${i} page">${i}</button>`;
       }
@@ -36,7 +36,7 @@ export default class ViewPagination {
 
     const next = document.createElement('li');
     if (pages == 1) {
-      next.innerHTML = '<button id="pagNext" type="button" class="pagination-arr icon arr-right" disabled aria-label="Next"></button>';
+      next.innerHTML = '<button id="pagNext" type="button" class="pagination-arr-disabled icon arr-right" disabled aria-label="Next"></button>';
     } else {
       next.innerHTML = '<button id="pagNext" type="button" class="pagination-arr icon arr-right" aria-label="Next"></button>';
     }
@@ -64,7 +64,7 @@ export default class ViewPagination {
   // внешний вид новой кнопки пагинации
   changeViewNextPage(nextInd) {
     const nextEl = document.querySelector(`#pag${nextInd}`);
-    nextEl.setAttribute('class', 'pagination-page pagination-page--active');
+    nextEl.setAttribute('class', 'pagination-page-active');
     nextEl.setAttribute('disabled', 'true');
     nextEl.setAttribute('aria-label', `${nextInd} page`);
   }
@@ -81,8 +81,12 @@ export default class ViewPagination {
   checkPrevArrow() {
     if (this.curPage == 1) {
       this.prevItem.setAttribute('disabled', 'true');
+      this.prevItem.classList.add("pagination-arr-disabled");
+      this.prevItem.classList.remove("pagination-arr");
     } else {
       this.prevItem.removeAttribute('disabled');
+      this.prevItem.classList.remove("pagination-arr-disabled");
+      this.prevItem.classList.add("pagination-arr");
     }
   }
 
@@ -90,8 +94,12 @@ export default class ViewPagination {
   checkNextArrow() {
     if (this.curPage == this.pages) {
       this.nextItem.setAttribute('disabled', 'true');
+      this.nextItem.classList.add("pagination-arr-disabled");
+      this.nextItem.classList.remove("pagination-arr");
     } else {
       this.nextItem.removeAttribute('disabled');
+      this.nextItem.classList.remove("pagination-arr-disabled");
+      this.nextItem.classList.add("pagination-arr");
     }
   }
 }
