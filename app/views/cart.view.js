@@ -25,13 +25,43 @@ export default class ViewCart {
           product: JSON.parse(event.target.value)
         });
         break;
+      case 'order':
+        $("#modalCart").modal("hide");
+        EventBus.publish('showOrder', {});
+        break;
     }
   }
 
   showCart(products, totalSum) {
     this.selectorCart.innerHTML = '';
+    const modalWindow = `
+      <div class="modal-lg modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title items-caption" id="modalLabelCart">Cart</h5>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ${this.buildCart(products, totalSum)}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="secondary-btn" data-dismiss="modal" 
+              aria-label="Back to the shop">
+              Cancel
+            </button>
+            <button type="button" class="main-btn" data-action="order" 
+              aria-label="Go to the order page">
+              Order
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    this.selectorCart.innerHTML = modalWindow;
+  }
 
-    const formatCurrency = new Intl.NumberFormat('ru', {
+  buildCart(products, totalSum) {
+    const formatCurrency = new Intl.NumberFormat('en', {
       style: 'currency',
       currency: 'UAH',
       minimumFractionDigits: 2,
@@ -44,11 +74,13 @@ export default class ViewCart {
           <td>${product.name}</td>
           <td class="text-center">
             <div class="d-flex justify-content-center align-items-center">
-              <button class="btn btn-sm btn-secondary mr-1" data-action="minus" value=${JSON.stringify(product)}>
+              <button class="btn btn-sm btn-secondary mr-1" data-action="minus" value=${JSON.stringify(product)} 
+                aria-label="decrease product">
                 -
               </button>
               ${product.quantity}
-              <button class="btn btn-sm btn-secondary ml-1" data-action="plus" value=${JSON.stringify(product)}>
+              <button class="btn btn-sm btn-secondary ml-1" data-action="plus" value=${JSON.stringify(product)} 
+                aria-label="increase product">
                 +
               </button>
             </div>
@@ -56,7 +88,8 @@ export default class ViewCart {
           <td class="text-right">${formatCurrency.format(product.price)}</td>
           <td class="text-right">${formatCurrency.format(product.total)}</td>
           <td class="text-center">
-            <button class="btn btn-sm btn-danger" data-action="remove" value=${JSON.stringify(product)}>
+            <button class="btn btn-sm btn-danger" data-action="remove" value=${JSON.stringify(product)} 
+              aria-label="remove product from cart">
               Remove
             </button>
           </td>
@@ -86,24 +119,6 @@ export default class ViewCart {
         </table>
     `;
 
-    const modalWindow = `
-      <div class="modal-lg modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title items-caption" id="modalLabelCart">Cart</h5>
-            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ${innerCart}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="secondary-btn" data-dismiss="modal">Cancel</button>
-            <button type="button" class="main-btn">Order</button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    this.selectorCart.innerHTML = modalWindow;
+    return innerCart;
   }
 }

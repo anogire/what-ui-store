@@ -29,8 +29,25 @@
   padding: 5px;
   color: #fff;
   background-color: transparent;
+  position: relative;
 }
 .customer-cart--active {
+  &:after {
+    content: '!';
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color-link;
+    color: #fff;
+  }
   &:hover,
   &:focus {
     outline: none;

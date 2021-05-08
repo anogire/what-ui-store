@@ -1,4 +1,4 @@
-import { EventBus } from '../pub-sub.js';
+import { EventBus } from '../app/pub-sub.js';
 
 export default class ViewCart {
 

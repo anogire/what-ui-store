@@ -5,10 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
-    integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA=="
-    crossorigin="anonymous" /> -->
+  <title>Online store</title>
+  <meta name="description" content="Choose your food with us">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
   <script src="./app/main.js" type="module"></script>
@@ -25,86 +23,58 @@
       <h1 class="main-caption">Shop</h1>
     </div>
   </header>
-
-
   <main class="container section-main">
     <div class="row mt-5 mb-1">
       <aside class="col-sm-4 mb-4 aside-category">
-
-        <h5 class="items-caption">Subcategories</h5>
-        <!-- <div id="subCategories" class="dropdown sub-categories"> -->
+        <h5 class="mb-3 items-caption">Subcategories</h5>
         <div id="subCategories">
-
         </div>
-
-
       </aside>
-      <div class="col-sm-8 mb-4">
+      <div id="mainContent" class="col-sm-8 mb-4">
         <section class="mb-4 section-info">
           <form id="searchProduct" class="search-block">
-            <input class="search-block__text" type="search" name="search" placeholder="search..." maxlength="10"
+            <input class="search-block__text" type="search" name="search" placeholder="search..." maxlength="100"
               aria-label="search product name">
             <button class="icon search search-block__btn" type="submit" aria-label="click to search by product name">
             </button>
           </form>
-
           <select id="sortByPrice" class="sort-block" aria-label="Sort by price">
             <option value="" disabled selected>Best rating</option>
             <option value="up">Lowest price first</option>
             <option value="down">Highest price first</option>
           </select>
-
-
-
         </section>
-
         <section class="mb-4">
-          <!-- Modal customer cart -->
           <div id="modalCart" class="modal fade" tabindex="-1" aria-labelledby="modalLabelCart" aria-hidden="true">
           </div>
-          <!-- Modal customer cart -->
-          <!-- Modal product details -->
+          <div id="modalOrder" class="modal fade" tabindex="-1" aria-labelledby="modalLabelOrder" aria-hidden="true">
+          </div>
           <div id="modalDetails" class="modal fade" tabindex="-1" aria-labelledby="modalLabelDetails"
-            aria-hidden="true"></div>
-          <!-- Modal product details -->
-          <!-- <div id="productsList" class="d-flex flex-wrap justify-content-center justify-content-md-between"> -->
+            aria-hidden="true">
+          </div>
           <div id="productsList" class="products-list">
           </div>
         </section>
-
         <section class="d-flex justify-content-center justify-content-md-end">
           <nav class="nav-pag">
           </nav>
         </section>
       </div>
-
-
-
-
     </div>
-
-    <!-- <div class="row mb-4">
-      <section class="col d-flex justify-content-center justify-content-md-end">
-        <nav class="nav-pag">
-        </nav>
-      </section> -->
     </div>
-
   </main>
-
-
-
   <footer class="footer">
     <div class="secondary-font">© 2021 Copyright:
       <a href="./index.html" class="link-light" aria-label="Link to the Shop-store"> Shop.com</a>
     </div>
   </footer>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
     crossorigin="anonymous"></script>
-  <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"
+    integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN+qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

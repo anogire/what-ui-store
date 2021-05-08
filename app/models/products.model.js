@@ -1,11 +1,9 @@
-export default class ModelProducts {
-  constructor() {
-    this.url = 'https://6013f25bb5389800175688b1.mockapi.io/contacts';
-  }
+import { URL } from '../consts.js';
 
+export default class ModelProducts {
   async load() {
     try {
-      const data = await fetch(this.url)
+      const data = await fetch(URL)
         .then(res => res.json());
       return data;
     } catch (err) {

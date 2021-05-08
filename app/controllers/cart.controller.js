@@ -12,18 +12,12 @@ export default class ControllerCart {
 
     this.selector.addEventListener('click', this.renderCart.bind(this));
 
-    //EventBus.subscribe('addToCart', this.cart.addToCart.bind(this.cart));
     EventBus.subscribe('addToCart', this.addToCart.bind(this));
     EventBus.subscribe('incProductInCart', this.incProductInCart.bind(this));
     EventBus.subscribe('decProductInCart', this.decProductInCart.bind(this));
     EventBus.subscribe('removeFromCart', this.removeFromCart.bind(this));
-    EventBus.subscribe('cartEmpty', this.cartEmpty.bind(this));
-  }
-
-  cartEmpty() {
-    this.selector.setAttribute('disabled', 'true');
-    this.selector.classList.remove("customer-cart--active");
-    $('#modalCart').modal('hide');
+    EventBus.subscribe('closeEmptyCart', this.closeCart.bind(this));
+    EventBus.subscribe('confirmOrder', this.clearCart.bind(this));
   }
 
   renderCart() {
@@ -49,5 +43,16 @@ export default class ControllerCart {
   removeFromCart(params) {
     this.cart.remove(params.product);
     this.renderCart();
+  }
+
+  closeCart() {
+    this.selector.setAttribute('disabled', 'true');
+    this.selector.classList.remove("customer-cart--active");
+    $('#modalCart').modal('hide');
+  }
+
+  clearCart() {
+    this.cart.clear();
+    this.closeCart();
   }
 }

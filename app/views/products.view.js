@@ -11,6 +11,12 @@ export default class ViewProducts {
       return;
     }
 
+    const formatCurrency = new Intl.NumberFormat('en', {
+      style: 'currency',
+      currency: 'UAH',
+      minimumFractionDigits: 2,
+    });
+
     products.map(product => {
       const item = document.createElement('div');
       item.setAttribute('class', 'card product-card');
@@ -29,7 +35,7 @@ export default class ViewProducts {
       cardBody.innerHTML = `
         <h5 class="card-title">${product.name}</h5>
         <p class="card-text">${product.category}</p>
-        <p class="card-text">${product.price}</p>`;
+        <p class="card-text">${formatCurrency.format(product.price)}</p>`;
 
       cardBody.append(addToCartBtn);
 
@@ -38,7 +44,6 @@ export default class ViewProducts {
 
       this.selectorProducts.append(item);
     })
-
   }
 
   notFound(msg) {

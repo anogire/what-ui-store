@@ -1,4 +1,4 @@
-import { EventBus } from './pub-sub.js';
+import { EventBus } from '../app/pub-sub.js';
 
 export default class Pagination {
   constructor(collectionLength, itemsPerPage) {
@@ -100,7 +100,7 @@ export default class Pagination {
 
 
 
-import { EventBus } from './pub-sub.js';
+import { EventBus } from '../app/pub-sub.js';
 
 export default class Pagination {
   constructor(itemsPerPage) {

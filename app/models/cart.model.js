@@ -52,6 +52,11 @@ export default class ModelCart {
     this.getTotalSum();
   }
 
+  clear() {
+    this.inner = [];
+    this.totalSum = 0;
+  }
+
   getTotal(product) {
     return product.quantity * +product.price;
   }
@@ -59,7 +64,7 @@ export default class ModelCart {
   getTotalSum() {
     this.totalSum = this.inner.reduce((sum, cur) => sum += +cur.total, 0);
     if (!this.totalSum) {
-      EventBus.publish('cartEmpty', {});
+      EventBus.publish('closeEmptyCart', {});
     }
   }
 }
