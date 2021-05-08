@@ -21,6 +21,23 @@ export default class ControllerOrder {
 
   confirmOrder(params) {
     this.model.send(params);
+    this.addToHistory(params.order);
     $('#modalOrder').modal('hide');
+  }
+
+  addToHistory(order) {
+    const date = new Date();
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+    const key = date.toLocaleString("en", options);
+
+    localStorage.setItem(key, JSON.stringify(order));
   }
 }

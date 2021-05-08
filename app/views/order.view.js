@@ -5,7 +5,6 @@ export default class ViewOrder {
   constructor() {
     this.selectorOrder = document.querySelector('#modalOrder');
     this.selectorOrder.addEventListener('click', e => this.handlerActions(e));
-
   }
 
   // обработчик событий для заказа
@@ -33,9 +32,17 @@ export default class ViewOrder {
           </div>
           <div class="modal-body order-content container">
             ${this.buildTableOrder(cart)}
-            ${this.getCustomerForm(cart)}
+            ${this.getCustomerForm()}
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer mt-3">
+            <button type="button" class="secondary-btn" data-dismiss="modal" 
+              aria-label="Back to the shop">
+              Cancel
+            </button>
+            <button type="button" class="main-btn" data-confirm="true" value=${JSON.stringify(cart)} 
+              aria-label="Confirm the order">
+              Confirm
+            </button>
           </div>
         </div>
       </div>
@@ -44,10 +51,10 @@ export default class ViewOrder {
   }
 
   //форма клиента
-  getCustomerForm(cart) {
+  getCustomerForm() {
     const customerData = ` 
       <form class="order-form">
-        <h5 class="items-caption text-right">Customer data</h5>
+        <h5 class="items-caption items-caption--alt text-right">Customer data</h5>
         <label class="form-group">Имя <sup>*</sup>
           <input type="text" name="name" maxlength="100" class="form-control mt-1 field" 
             placeholder="Min length is 3 characters">
@@ -61,16 +68,6 @@ export default class ViewOrder {
             placeholder="@">
         </label>
         <small><sup>*</sup> обязательное поле</small>
-        <div class="buttons-group text-right mt-3">
-          <button type="button" class="secondary-btn mr-1" data-dismiss="modal" 
-            aria-label="Back to the shop">
-              Cancel
-          </button>
-          <button type="button" class="main-btn" data-confirm="true" value=${JSON.stringify(cart)} 
-            aria-label="Confirm the order">
-              Confirm
-          </button>
-        </div>
       </form>`;
     return customerData;
   }
@@ -146,7 +143,7 @@ export default class ViewOrder {
     fields.forEach(item => {
       item.classList.remove('is-invalid');
 
-      if (!item.value || item.value.length <= 3) {
+      if (!item.value || item.value.length < 3) {
         item.classList.add('is-invalid');
         item.value = '';
         result = false;

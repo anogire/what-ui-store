@@ -1,0 +1,24 @@
+.order-content {
+  display: flex;
+  flex-direction: column;
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
+}
+.order-history {
+  display: flex;
+  flex-direction: column;
+}
+.order-cart {
+  @include media-breakpoint-up(lg) {
+    width: 60%;
+  }
+}
+.order-form {
+  display: flex;
+  flex-direction: column;
+  @include media-breakpoint-up(lg) {
+    width: 40%;
+    padding-left: 20px;
+  }
+}

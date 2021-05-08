@@ -3,17 +3,17 @@ export const EventBus = {
 
   subscribe(channelName, listener) {
     if (!this.channels[channelName]) {
-      this.channels[channelName] = []
+      this.channels[channelName] = [];
     }
-    this.channels[channelName].push(listener)
+    this.channels[channelName].push(listener);
   },
 
   publish(channelName, data) {
     const channel = this.channels[channelName]
     if (!channel || !channel.length) {
-      return
+      return;
     }
 
-    channel.forEach(listener => listener(data))
+    channel.forEach(listener => listener(data));
   }
 }

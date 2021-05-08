@@ -3,7 +3,6 @@ import { URL } from '../consts.js';
 export default class ModelProducts {
 
   async send(order) {
-    debugger
     try {
       const data = await fetch(URL, {
         method: 'POST',
