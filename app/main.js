@@ -1,12 +1,17 @@
-import { scrollNavbar } from './system-func.js';
-import MainController from './controllers/main.controller.js';
+import ControllerProducts from './products/products.controller.js';
+import ControllerDetails from './product-details/details.controller.js';
+import ControllerCategories from './categories/categories.controller.js';
+import ControllerSort from './sorting/sort.controller.js';
+import ControllerSearch from './search/search.controller.js';
+import ControllerCart from './cart/cart.controller.js';
+import ControllerOrder from './order/order.controller.js';
+import ControllerStorage from './storage/storage.controller.js';
 
-const sortDirection = document.querySelector('#sortByPrice');
-const searchProduct = document.querySelector('#searchProduct');
-const cart = document.querySelector('#customerCart');
-const history = document.querySelector('#ordersHistory');
-
-const mainController = new MainController(sortDirection, searchProduct, cart, history);
-
-window.addEventListener('scroll', scrollNavbar);
-mainController.init();
+new ControllerProducts();
+new ControllerDetails();
+new ControllerCategories();
+new ControllerSort();
+new ControllerSearch();
+new ControllerCart();
+new ControllerOrder();
+new ControllerStorage();
