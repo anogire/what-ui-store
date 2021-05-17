@@ -19,6 +19,12 @@
     margin: 0;
   }
 }
+.category-nav li {
+  &:last-child .category-nav__item  {
+    color: $color-dark;
+    font-weight: 500;
+  }
+}
 .category-nav__item {
   font-size: 14px;
   text-transform: uppercase;

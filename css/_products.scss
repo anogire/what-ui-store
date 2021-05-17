@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-self: stretch;
   flex-wrap: wrap;
-  &:last-child() {
+  @include media-breakpoint-up(lg) {
     justify-content: flex-start;
   }
 }
@@ -21,6 +21,10 @@
   }
   @include media-breakpoint-up(lg) {
     flex-basis: 30%;
+    &:nth-child(3n+2) {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
   }
 }
 .product-card--cursor {

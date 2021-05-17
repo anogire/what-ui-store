@@ -1,4 +1,4 @@
-import { URL, COUNT_PRODUCT_FIELDS } from '../consts.js';
+import { URL, COUNT_PRODUCT_FIELDS, NO_CATEGORY } from '../consts.js';
 
 export default class ModelProducts {
   constructor() {
@@ -34,16 +34,22 @@ export default class ModelProducts {
 
   getCategories() {
     const categories = new Set(this._loadData.map((item) => item['CATEGORY']));
-    return Array.from(categories);
+    //return Array.from(categories);
+    return [...categories, NO_CATEGORY];
   }
 
   filterByCategory(category) {
-    this._filteredData = this._loadData.filter(product => product['CATEGORY'].toLowerCase() == category.toLowerCase());
+    this._filteredData = (category == NO_CATEGORY) ?
+      this._loadData :
+      this._loadData.filter(product => product['CATEGORY'].toLowerCase() == category.toLowerCase());
+    //this._filteredData = this._loadData.filter(product => product['CATEGORY'].toLowerCase() == category.toLowerCase());
     return (this._sortered) ? this.sortByPrice(this._sortered) : this.copy(this._filteredData);
   }
 
   sortByPrice(direction) {
-    const data = (!this._filteredData || !this._filteredData.length) ? this.copy(this._loadData) : this.copy(this._filteredData);
+    const data = (!this._filteredData || !this._filteredData.length) ?
+      this.copy(this._loadData) :
+      this.copy(this._filteredData);
     switch (direction) {
       case "up":
         data.sort((a, b) => a['PRICE'] - b['PRICE']);
@@ -63,7 +69,9 @@ export default class ModelProducts {
     const finded = this._loadData.filter(item =>
       item['PRODUCT_NAME'].toLowerCase().includes(value.toLowerCase()) ||
       item['MANUFACTURE'].toLowerCase().includes(value.toLowerCase()));
-    return finded;
+    //return finded;
+    this._filteredData = finded;
+    return (this._sortered) ? this.sortByPrice(this._sortered) : this.copy(this._filteredData);
   }
 
   parseData(data) {
