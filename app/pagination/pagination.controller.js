@@ -10,6 +10,7 @@ export default class ControllerPagination {
 
     this.publisher.subscribe('loadData', data => this.init(data));
     this.publisher.subscribe('filteredData', data => this.init(data));
+    this.publisher.subscribe('noData', () => this.removePagination());
   }
 
   init({ productsQuantity, curPage }) {
@@ -21,6 +22,11 @@ export default class ControllerPagination {
   render() {
     const pages = this.model.pageCount();
     this.view.render(this.model.curPage, pages);
+  }
+
+  removePagination() {
+    this.model.clear();
+    this.view.render();
   }
 
   handlerActions(e) {

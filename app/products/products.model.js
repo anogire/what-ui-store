@@ -6,6 +6,7 @@ export default class ModelProducts {
     this._filteredData = [];
     this._sortered = "";
     this._curPage = 1;
+    this._curCategory = NO_CATEGORY;
   }
 
   async load() {
@@ -66,42 +67,44 @@ export default class ModelProducts {
     return this.copy(products);
   }
 
-  filterByCategory(category) {
+  filterByCategory(category = NO_CATEGORY) {
+    this._curCategory = category;
+
     this._filteredData = (category == NO_CATEGORY) ?
       this.copy(this._loadData) :
       this.copy(this._loadData.filter(product => product['CATEGORY'].toLowerCase() == category.toLowerCase()));
 
-    if (this._sortered) {
-      this.sortByPrice(this._sortered);
-    }
+    return (this._sortered) ? this.sortByPrice(this._sortered) : this._filteredData;
   }
 
   sortByPrice(direction) {
-    const data = (!this._filteredData || !this._filteredData.length) ? this.copy(this._loadData) : this.copy(this._filteredData);
+    this._sortered = direction;
+
+    const data = (!this._filteredData || !this._filteredData.length) ?
+      this.copy(this._loadData) :
+      this.copy(this._filteredData);
+
     switch (direction) {
       case "up":
         this._filteredData = data.sort((a, b) => a['PRICE'] - b['PRICE']);
-        this._sortered = "up";
         break;
       case "down":
         this._filteredData = data.sort((a, b) => b['PRICE'] - a['PRICE']);
-        this._sortered = "down";
         break;
       default:
-        this._sortered = "";
-        const curCategory = data[0]['CATEGORY'];
-        const category = data.some(item => item['CATEGORY'] !== curCategory) ? NO_CATEGORY : curCategory;
-        this.filterByCategory(category);
+        this.filterByCategory(this._curCategory);
     }
   }
 
   searchProduct(value) {
+    this._curCategory = NO_CATEGORY;
+    this._sortered = "";
+
     const finded = this._loadData.filter(item =>
       item['PRODUCT_NAME'].toLowerCase().includes(value.toLowerCase()) ||
       item['MANUFACTURE'].toLowerCase().includes(value.toLowerCase()));
-    this._filteredData = this.copy(finded);
 
-    this.sortByPrice(this._sortered);
+    this._filteredData = this.copy(finded);
 
     return (!finded || !finded.length) ? false : true;
   }

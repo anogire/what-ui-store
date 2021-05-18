@@ -4,4 +4,8 @@ export default class ViewSort {
     this.sortDirection = document.querySelector('#sortByPrice');
     this.sortDirection.addEventListener('change', handlerActions);
   }
+
+  clearSorting() {
+    this.sortDirection.value = "";
+  }
 }

@@ -35,6 +35,7 @@ export default class ControllerProducts {
   handlerActions(e) {
     const productId = e.target.offsetParent.dataset.id;
     const product = this.model.getById(productId);
+
     if (e.target.dataset.add_to_cart) {
       this.publisher.publish('addToCart', product);
     }
@@ -68,12 +69,18 @@ export default class ControllerProducts {
   searchProduct(data) {
     const finded = this.model.searchProduct(data.value);
 
-    this.publisher.publish('filteredData', {
-      productsQuantity: this.model.getProductsQuantity(),
-      curPage: 1
-    });
+    this.publisher.publish('getSearch', {});
 
-    (!finded) ? this.view.notLoad('product not found') : this.getDataForPage(1);
+    if (finded) {
+      this.publisher.publish('filteredData', {
+        productsQuantity: this.model.getProductsQuantity(),
+        curPage: 1
+      });
+      this.getDataForPage(1);
+    } else {
+      this.publisher.publish('noData', {});
+      this.view.notLoad('product not found');
+    }
   }
 
   getDataForPage(pageNumber) {

@@ -29,4 +29,9 @@ export default class ModelPagination {
   pageCount() {
     return Math.ceil(this._collectionLength / ITEMS_PER_PAGE);
   }
+
+  clear() {
+    this._collectionLength = 0;
+    this._curPage = 1;
+  }
 }

@@ -6,6 +6,10 @@ export default class ViewPagination {
   }
 
   render(curPage, quantityPages) {
+    if (!curPage) {
+      this.paginationSelector.innerHTML = '';
+      return;
+    }
     this.paginationSelector.innerHTML = `
     <ul class="pagination justify-content-center flex-wrap">
       ${this.renderPrevPage(curPage)}
