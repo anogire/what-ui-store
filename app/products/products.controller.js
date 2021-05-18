@@ -11,6 +11,7 @@ export default class ControllerProducts {
     this.publisher.subscribe('getByCategory', data => this.filterByCategory(data));
     this.publisher.subscribe('sortByPrice', data => this.sortByPrice(data));
     this.publisher.subscribe('searchByProductName', data => this.searchProduct(data));
+    this.publisher.subscribe('changePage', data => this.getDataForPage(data.curPage));
 
     this.load();
   }
@@ -22,9 +23,11 @@ export default class ControllerProducts {
           this.view.notLoad('no data yet');
         } else {
           this.publisher.publish('loadData', {
-            categories: this.model.getCategories()
+            categories: this.model.getCategories(),
+            productsQuantity: this.model.getProductsQuantity()
           });
-          this.view.render(data);
+
+          this.getDataForPage(1);
         }
       });
   }
@@ -41,18 +44,41 @@ export default class ControllerProducts {
   }
 
   filterByCategory(data) {
-    const filtered = this.model.filterByCategory(data.category);
-    this.view.render(filtered);
+    this.model.filterByCategory(data.category);
+
+    this.publisher.publish('filteredData', {
+      productsQuantity: this.model.getProductsQuantity(),
+      curPage: 1
+    });
+
+    this.getDataForPage(1);
   }
 
   sortByPrice(data) {
-    const sorted = this.model.sortByPrice(data.direction);
-    this.view.render(sorted);
+    this.model.sortByPrice(data.direction);
+
+    this.publisher.publish('filteredData', {
+      productsQuantity: this.model.getProductsQuantity(),
+      curPage: this.model.curPage
+    });
+
+    this.getDataForPage(this.model.curPage);
   }
 
   searchProduct(data) {
     const finded = this.model.searchProduct(data.value);
-    (!finded || !finded.length) ? this.view.notLoad('product not found') : this.view.render(finded);
+
+    this.publisher.publish('filteredData', {
+      productsQuantity: this.model.getProductsQuantity(),
+      curPage: 1
+    });
+
+    (!finded) ? this.view.notLoad('product not found') : this.getDataForPage(1);
   }
 
+  getDataForPage(pageNumber) {
+    this.model.curPage = pageNumber;
+    const dataOnePage = this.model.getDataForPage(pageNumber);
+    this.view.render(dataOnePage);
+  }
 }

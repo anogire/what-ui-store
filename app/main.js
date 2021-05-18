@@ -6,6 +6,7 @@ import ControllerSearch from './search/search.controller.js';
 import ControllerCart from './cart/cart.controller.js';
 import ControllerOrder from './order/order.controller.js';
 import ControllerStorage from './storage/storage.controller.js';
+import ControllerPagination from './pagination/pagination.controller.js';
 
 new ControllerProducts();
 new ControllerDetails();
@@ -15,3 +16,4 @@ new ControllerSearch();
 new ControllerCart();
 new ControllerOrder();
 new ControllerStorage();
+new ControllerPagination();
