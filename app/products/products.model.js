@@ -11,18 +11,23 @@ export default class ModelProducts {
 
   async load() {
     try {
-      const data = await fetch(URL)
-        .then(res => res.json());
-      this._loadData = this.parseData(data);
-      return this.data;
+      return await fetch(URL)
+        .then(res => res.json())
+        .then(data => {
+          this._loadData = this.parseData(data);
+          return this.loadData;
+        });
     } catch (err) {
       console.log(err);
     }
   }
 
-  get data() {
-    this._filteredData = [];
+  get loadData() {
     return this.copy(this._loadData);
+  }
+
+  get filteredData() {
+    return this.copy(this._filteredData);
   }
 
   copy(data) {
@@ -58,7 +63,7 @@ export default class ModelProducts {
   }
 
   getDataForPage(numberPage = 1) {
-    this._curPage = numberPage;
+    this.curPage = numberPage;
     const data = (!this._filteredData || !this._filteredData.length) ? this._loadData : this._filteredData;
 
     const startInd = ITEMS_PER_PAGE * (this._curPage - 1);
@@ -71,18 +76,16 @@ export default class ModelProducts {
     this._curCategory = category;
 
     this._filteredData = (category == NO_CATEGORY) ?
-      this.copy(this._loadData) :
-      this.copy(this._loadData.filter(product => product['CATEGORY'].toLowerCase() == category.toLowerCase()));
+      this.loadData :
+      this.loadData.filter(product => product['CATEGORY'].toLowerCase() == category.toLowerCase());
 
-    return (this._sortered) ? this.sortByPrice(this._sortered) : this._filteredData;
+    return (this._sortered) ? this.sortByPrice(this._sortered) : this.filteredData;
   }
 
   sortByPrice(direction) {
     this._sortered = direction;
 
-    const data = (!this._filteredData || !this._filteredData.length) ?
-      this.copy(this._loadData) :
-      this.copy(this._filteredData);
+    const data = (!this._filteredData || !this._filteredData.length) ? this.loadData : this.filteredData;
 
     switch (direction) {
       case "up":
@@ -100,13 +103,11 @@ export default class ModelProducts {
     this._curCategory = NO_CATEGORY;
     this._sortered = "";
 
-    const finded = this._loadData.filter(item =>
+    this._filteredData = this.loadData.filter(item =>
       item['PRODUCT_NAME'].toLowerCase().includes(value.toLowerCase()) ||
       item['MANUFACTURE'].toLowerCase().includes(value.toLowerCase()));
 
-    this._filteredData = this.copy(finded);
-
-    return (!finded || !finded.length) ? false : true;
+    return (!this._filteredData || !this._filteredData.length) ? false : true;
   }
 
   parseData(data) {

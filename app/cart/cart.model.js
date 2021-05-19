@@ -30,13 +30,12 @@ export default class ModelCart {
     return JSON.parse(JSON.stringify(data));
   }
 
-  getById(id) {
-    const product = this._loadData.find(item => item['ID'] == id);
-    return this.copy(product);
+  getById(productId) {
+    return this._inner.data.find(item => item['ID'] === productId);
   }
 
   plus(productId) {
-    const product = this._inner.data.find(item => item['ID'] === productId);
+    const product = this.getById(productId);
     if (product.quantity > product['AMOUNT']) return;
     product.quantity++;
     product.total = this.getTotal(product);
@@ -44,7 +43,7 @@ export default class ModelCart {
   }
 
   minus(productId) {
-    const product = this._inner.data.find(item => item['ID'] === productId);
+    const product = this.getById(productId);
     if (product.quantity <= 1) return;
     product.quantity--;
     product.total = this.getTotal(product);
