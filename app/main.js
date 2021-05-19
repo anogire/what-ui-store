@@ -7,6 +7,7 @@ import ControllerCart from './cart/cart.controller.js';
 import ControllerOrder from './order/order.controller.js';
 import ControllerStorage from './storage/storage.controller.js';
 import ControllerPagination from './pagination/pagination.controller.js';
+import ControllerTelegramBot from './telegram-bot/telegram-bot.controller.js';
 
 new ControllerProducts();
 new ControllerDetails();
@@ -17,3 +18,4 @@ new ControllerCart();
 new ControllerOrder();
 new ControllerStorage();
 new ControllerPagination();
+new ControllerTelegramBot();

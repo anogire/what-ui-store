@@ -35,7 +35,6 @@ export default class ControllerOrder {
         order: this.model.order,
         customer: this.model.customer
       });
-
       this.removeOrder();
     }
   }

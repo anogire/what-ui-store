@@ -47,7 +47,6 @@ export default class ControllerCart {
         this.model.remove(productId);
         const data = this.model.inner.data;
         (!data || !data.length) ? this.view.inactiveCart() : this.showCart();
-        //this.showCart();
         break;
       case 'order':
         this.publisher.publish('makeOrder', this.model.inner);
