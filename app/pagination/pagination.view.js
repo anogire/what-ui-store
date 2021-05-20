@@ -26,14 +26,14 @@ export default class ViewPagination {
       if (curPage == i) {
         listPages += `
           <li>
-            <button type="button" data-id="${i}" data-change_page="true" class="pagination-page-active" disabled aria-label="${i} page">
+            <button type="button" data-id="${i}" data-action="change_page" class="pagination-page-active" disabled aria-label="${i} page">
               ${i}
             </button>
           </li>`;
       } else {
         listPages += `
           <li>
-            <button type="button" data-id="${i}" data-change_page="true" class="pagination-page" aria-label="go to ${i} page">
+            <button type="button" data-id="${i}" data-action="change_page" class="pagination-page" aria-label="go to ${i} page">
               ${i}
             </button>
           </li>`;
@@ -49,7 +49,7 @@ export default class ViewPagination {
         </button>
       </li>` :
       `<li>
-        <button id="pagPrev" type="button" data-id="${+curPage - 1}" data-change_page="true" 
+        <button id="pagPrev" type="button" data-id="${+curPage - 1}" data-action="change_page" 
           class="pagination-arr icon arr-left" aria-label="Previous">
         </button>
       </li>`;
@@ -63,7 +63,7 @@ export default class ViewPagination {
         </button>
       </li>` :
       `<li>
-        <button id="pagNext" type="button" data-id="${+curPage + 1}" data-change_page="true" 
+        <button id="pagNext" type="button" data-id="${+curPage + 1}" data-action="change_page" 
           class="pagination-arr icon arr-right" aria-label="Next">
         </button>
       </li>`;

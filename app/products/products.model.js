@@ -36,7 +36,7 @@ export default class ModelProducts {
 
   set curPage(value) {
     if (value > 0) {
-      this._curPage = value;
+      this._curPage = +value;
     }
   }
 
@@ -44,27 +44,29 @@ export default class ModelProducts {
     return this._curPage;
   }
 
+  isFilteredExist() {
+    return !!(this._filteredData && this._filteredData.length);
+  }
+
   getById(id) {
-    const product = this._loadData.find(item => item['ID'] == id);
+    const product = this._loadData.find(item => item.ID == id);
     return this.copy(product);
   }
 
   getCategories() {
-    const categories = new Set(this._loadData.map((item) => item['CATEGORY']));
+    const categories = new Set(this._loadData.map((item) => item.CATEGORY));
     const categoriesList = [...categories, NO_CATEGORY];
     return this.copy(categoriesList);
   }
 
   getProductsQuantity() {
-    const quantity = (!this._filteredData || !this._filteredData.length) ?
-      this._loadData.length :
-      this._filteredData.length;
+    const quantity = this.isFilteredExist() ? this._filteredData.length : this._loadData.length;
     return quantity;
   }
 
   getDataForPage(numberPage = 1) {
     this.curPage = numberPage;
-    const data = (!this._filteredData || !this._filteredData.length) ? this._loadData : this._filteredData;
+    const data = this.isFilteredExist() ? this._filteredData : this._loadData;
 
     const startInd = ITEMS_PER_PAGE * (this._curPage - 1);
     const products = data.slice(startInd, startInd + ITEMS_PER_PAGE);
@@ -77,7 +79,7 @@ export default class ModelProducts {
 
     this._filteredData = (category == NO_CATEGORY) ?
       this.loadData :
-      this.loadData.filter(product => product['CATEGORY'].toLowerCase() == category.toLowerCase());
+      this.loadData.filter(product => product.CATEGORY.toLowerCase() == category.toLowerCase());
 
     return (this._sortered) ? this.sortByPrice(this._sortered) : this.filteredData;
   }
@@ -85,33 +87,33 @@ export default class ModelProducts {
   sortByPrice(direction) {
     this._sortered = direction;
 
-    const data = (!this._filteredData || !this._filteredData.length) ? this.loadData : this.filteredData;
+    const data = this.isFilteredExist() ? this.filteredData : this.loadData;
 
     switch (direction) {
       case "up":
-        this._filteredData = data.sort((a, b) => a['PRICE'] - b['PRICE']);
+        this._filteredData = data.sort((a, b) => a.PRICE - b.PRICE);
         break;
       case "down":
-        this._filteredData = data.sort((a, b) => b['PRICE'] - a['PRICE']);
+        this._filteredData = data.sort((a, b) => b.PRICE - a.PRICE);
         break;
       default:
         this.filterByCategory(this._curCategory);
     }
   }
 
-  searchProduct(value) {
+  isSearchedProduct(value) {
     this._curCategory = NO_CATEGORY;
     this._sortered = "";
 
     this._filteredData = this.loadData.filter(item =>
-      item['PRODUCT_NAME'].toLowerCase().includes(value.toLowerCase()) ||
-      item['MANUFACTURE'].toLowerCase().includes(value.toLowerCase()));
+      item.PRODUCT_NAME.toLowerCase().includes(value.toLowerCase()) ||
+      item.MANUFACTURE.toLowerCase().includes(value.toLowerCase()));
 
-    return (!this._filteredData || !this._filteredData.length) ? false : true;
+    return this.isFilteredExist();
   }
 
   parseData(data) {
-    const entry = data['feed']['entry'];
+    const entry = data.feed.entry;
     const countProducts = entry.length;
 
     const products = [];
@@ -121,7 +123,7 @@ export default class ModelProducts {
       const product = entryProduct.reduce((prev, cur) => {
         return {
           ...prev,
-          [entry[j++]['content']['$t']]: cur['content']['$t']
+          [entry[j++].content.$t]: cur.content.$t
         }
       }, {});
       products.push(product);

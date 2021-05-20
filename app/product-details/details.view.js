@@ -54,7 +54,7 @@ export default class ViewDetails {
             aria-label="Back to the shop">
             Cancel
           </button>
-          <button type="button" class="main-btn" data-add_to_cart="true" aria-label="Put to the cart">
+          <button type="button" class="main-btn" data-action="addToCart" aria-label="Put to the cart">
             Buy
           </button>
         </div>

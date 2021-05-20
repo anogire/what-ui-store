@@ -31,7 +31,7 @@ export default class ControllerCart {
 
   handlerActions(e) {
     const productId = e.target.dataset.id;
-    if (e.key == "Escape" || e.target.dataset.dismiss == "modal" || e.target.dataset.action == "order") {
+    if (e.key == 'Escape' || e.target.dataset.dismiss == 'modal' || e.target.dataset.action == 'order') {
       this.view.closeCart();
     }
     switch (e.target.dataset.action) {

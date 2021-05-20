@@ -22,7 +22,7 @@ export default class ControllerOrder {
   }
 
   handlerActions(e) {
-    if (e.key == "Escape" || e.target.dataset.dismiss == "modal") {
+    if (e.key == 'Escape' || e.target.dataset.dismiss == 'modal') {
       this.view.closeOrder();
     }
   }

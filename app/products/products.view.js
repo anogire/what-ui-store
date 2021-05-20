@@ -30,7 +30,7 @@ export default class ViewProducts {
           </div>
           <div class="card-text card-info">
             <span class="product-caption me-2 mt-2">${this._formatCurrency.format(price)}</span>
-            <button type="button" class="main-btn mt-2" data-add_to_cart="true">Buy</button>
+            <button type="button" class="main-btn mt-2" data-action="addToCart">Buy</button>
           </div>
         </div>
       </div>`;

@@ -8,16 +8,16 @@ export default class ModelCart {
   }
 
   set inner(product) {
-    const existProduct = this._inner.data.find(item => item['ID'] === product['ID']);
+    const existProduct = this._inner.data.find(item => item.ID === product.ID);
     if (!existProduct) {
       const newPoduct = {
         ...product,
         quantity: 1,
-        total: product['PRICE']
+        total: product.PRICE
       };
       this._inner.data.push(newPoduct);
     } else {
-      this.plus(product['ID']);
+      this.plus(product.ID);
     }
     this.getTotalSum();
   }
@@ -31,12 +31,12 @@ export default class ModelCart {
   }
 
   getById(productId) {
-    return this._inner.data.find(item => item['ID'] === productId);
+    return this._inner.data.find(item => item.ID === productId);
   }
 
   plus(productId) {
     const product = this.getById(productId);
-    if (product.quantity > product['AMOUNT']) return;
+    if (product.quantity > product.AMOUNT) return;
     product.quantity++;
     product.total = this.getTotal(product);
     this.getTotalSum();
@@ -51,12 +51,12 @@ export default class ModelCart {
   }
 
   remove(productId) {
-    this._inner.data = this._inner.data.filter(item => item['ID'] !== productId);
+    this._inner.data = this._inner.data.filter(item => item.ID !== productId);
     this.getTotalSum();
   }
 
   getTotal(product) {
-    return product.quantity * product['PRICE'];
+    return product.quantity * product.PRICE;
   }
 
   getTotalSum() {

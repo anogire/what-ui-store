@@ -18,10 +18,10 @@ export default class ControllerDetails {
   }
 
   handlerActions(e) {
-    if (e.target.dataset.add_to_cart) {
+    if (e.target.dataset.action == 'addToCart') {
       this.publisher.publish('addToCart', this.model.data);
     }
-    if (e.key == "Escape" || e.target.dataset.dismiss == "modal" || e.target.dataset.add_to_cart) {
+    if (e.key == 'Escape' || e.target.dataset.dismiss == 'modal' || e.target.dataset.action == 'addToCart') {
       this.view.modalClose();
     }
   }

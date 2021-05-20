@@ -36,12 +36,9 @@ export default class ControllerProducts {
     const productId = e.target.offsetParent.dataset.id;
     const product = this.model.getById(productId);
 
-    if (e.target.dataset.add_to_cart) {
-      this.publisher.publish('addToCart', product);
-    }
-    else {
+    (e.target.dataset.action == 'addToCart') ?
+      this.publisher.publish('addToCart', product) :
       this.publisher.publish('showDetails', product);
-    }
   }
 
   filterByCategory(data) {
@@ -67,7 +64,7 @@ export default class ControllerProducts {
   }
 
   searchProduct(data) {
-    const finded = this.model.searchProduct(data.value);
+    const finded = this.model.isSearchedProduct(data.value);
 
     this.publisher.publish('getSearch', {});
 

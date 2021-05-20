@@ -31,7 +31,7 @@ export default class ControllerPagination {
   }
 
   handlerActions(e) {
-    if (e.target.dataset.change_page) {
+    if (e.target.dataset.action == 'change_page') {
       this.model.curPage = e.target.dataset.id;
 
       this.publisher.publish('changePage', { curPage: this.model.curPage });
