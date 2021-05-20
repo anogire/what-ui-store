@@ -3,7 +3,7 @@ export default class ViewStorage {
   constructor(handlerActions, showHistory) {
     this.selectorHistoryBtn = document.querySelector('#ordersHistory');
     this.selectorHistory = document.querySelector('#modalOrder');
-    this.selectorBody = document.getElementsByTagName('body')[0];
+    this.selectorBody = document.body;
     this.selectorBackdrop = document.querySelector('#backdrop');
 
     this.handlerActions = handlerActions;

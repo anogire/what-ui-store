@@ -2,7 +2,7 @@ export default class ViewDetails {
   constructor(handlerActions) {
     this.selectorProduct = document.querySelector('#modalDetails');
     this.selectorBackdrop = document.querySelector('#backdrop');
-    this.selectorBody = document.getElementsByTagName('body')[0];
+    this.selectorBody = document.body;
 
     this.handlerActions = handlerActions;
 

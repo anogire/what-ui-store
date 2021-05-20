@@ -14,6 +14,9 @@ export default class ViewProducts {
     if (!data) return;
     this.selectorProducts.innerHTML = data.map(el => this.renderProduct(el)).join('');
     this.selectorProducts.addEventListener('click', this.handlerActions);
+    if (data.length % 3 !== 0) {
+      this.selectorProducts.innerHTML += '<div class="card product-card empty-card"></div>';
+    }
   }
 
   renderProduct({ ID: id, PRODUCT_NAME: name, MANUFACTURE: manufacture, PRICE: price, IMG_LINK: imgLink }) {

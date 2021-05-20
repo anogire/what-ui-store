@@ -21,7 +21,8 @@ export default class ControllerPagination {
 
   render() {
     const pages = this.model.pageCount();
-    this.view.render(this.model.curPage, pages);
+    const range = this.model.getRange();
+    this.view.render(this.model.curPage, pages, range);
   }
 
   removePagination() {

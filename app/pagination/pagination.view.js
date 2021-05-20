@@ -5,7 +5,7 @@ export default class ViewPagination {
     this.handlerActions = handlerActions;
   }
 
-  render(curPage, quantityPages) {
+  render(curPage, quantityPages, range) {
     if (!curPage) {
       this.paginationSelector.innerHTML = '';
       return;
@@ -13,16 +13,16 @@ export default class ViewPagination {
     this.paginationSelector.innerHTML = `
     <ul class="pagination justify-content-center flex-wrap">
       ${this.renderPrevPage(curPage)}
-      ${this.renderPageNumber(curPage, quantityPages)}
+      ${this.renderPageNumber(curPage, range)}
       ${this.renderNextPage(curPage, quantityPages)}
     </ul>`;
 
     this.paginationSelector.addEventListener('click', this.handlerActions);
   }
 
-  renderPageNumber(curPage, quantityPages) {
+  renderPageNumber(curPage, [minimum, maximum]) {
     let listPages = '';
-    for (let i = 1; i <= quantityPages; i++) {
+    for (let i = minimum; i <= maximum; i++) {
       if (curPage == i) {
         listPages += `
           <li>

@@ -2,7 +2,7 @@ export default class ViewOrder {
 
   constructor(handlerActions, handleForm) {
     this.selectorOrder = document.querySelector('#modalOrder');
-    this.selectorBody = document.getElementsByTagName('body')[0];
+    this.selectorBody = document.body;
     this.selectorBackdrop = document.querySelector('#backdrop');
 
     this.handlerActions = handlerActions;
@@ -191,7 +191,7 @@ export default class ViewOrder {
 
   checkPhone() {
     const phone = this.selectorOrder.querySelector('#phone');
-    const regexpPhone = /^\d{3} \d{3}-\d{2}-\d{2}$|^\+380 \(\d{2}\) \d{3}-\d{2}-\d{2}$/;
+    const regexpPhone = /^\d{3} \d{3}-\d{2}-\d{2}$|^\d{10}$/;
     if (!regexpPhone.test(phone.value)) {
       phone.classList.add('is-invalid');
       phone.value = '';

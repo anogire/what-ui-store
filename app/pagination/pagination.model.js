@@ -18,7 +18,7 @@ export default class ModelPagination {
 
   set curPage(value) {
     if (value > 0) {
-      this._curPage = value;
+      this._curPage = +value;
     }
   }
 
@@ -32,6 +32,27 @@ export default class ModelPagination {
 
   clear() {
     this._collectionLength = 0;
-    this._curPage = 1;
+    this.curPage = 1;
+  }
+
+  getRange() {
+    const quantityPages = this.pageCount();
+    let minimum, maximum;
+
+    if (quantityPages == 1) {
+      return [minimum = 1, maximum = 1];
+    }
+
+    if (this.curPage - 2 < 1) {
+      minimum = 1;
+    } else if (this.curPage + 2 > quantityPages) {
+      minimum = Math.max(1, quantityPages - 4);
+    } else {
+      minimum = this.curPage - 2;
+    }
+
+    maximum = (minimum + 4 > quantityPages) ? quantityPages : minimum + 4;
+
+    return [minimum, maximum];
   }
 }

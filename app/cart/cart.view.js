@@ -7,7 +7,7 @@ export default class ViewCart {
     this.selectorCart = document.querySelector('#modalCart');
     this.selectorBackdrop = document.querySelector('#backdrop');
     this.selectorHead = document.querySelector('.navbar');
-    this.selectorBody = document.getElementsByTagName('body')[0];
+    this.selectorBody = document.body;
 
     this.handlerActions = handlerActions;
     this.selectorCartBtn.addEventListener('click', showCart);
