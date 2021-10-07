@@ -1,3 +1,4 @@
+import { data } from '../data.js';
 import { URL, COUNT_PRODUCT_FIELDS, NO_CATEGORY, ITEMS_PER_PAGE } from '../consts.js';
 
 export default class ModelProducts {
@@ -10,6 +11,9 @@ export default class ModelProducts {
   }
 
   async load() {
+    this._loadData = this.parseData(data);
+    return this.loadData;
+    /*
     try {
       return await fetch(URL)
         .then(res => res.json())
@@ -20,6 +24,7 @@ export default class ModelProducts {
     } catch (err) {
       console.log(err);
     }
+    */
   }
 
   get loadData() {
